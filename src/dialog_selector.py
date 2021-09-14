@@ -13,7 +13,14 @@ from dialog import Dialog
 from templates.available import SWITCH_FLAGS
 
 
+client_specs = {}
+
+
 def get_random_prefix(size=8):
+    """
+    Generate random bytes and take a base64-like representation for
+    random prefix suggestion.
+    """
     rand_bytes = os.urandom(size)
     rand_str = base64.b64encode(rand_bytes).decode('ascii')
     rand_str = rand_str.replace("+", "_")
@@ -35,7 +42,14 @@ def switch_flags_menu(d):
     return selected_switches
 
 
-client_specs = {}
+def client_select_menu(d, menu_choices):
+    selected_clients = d.checklist(
+        ("Select API Clients to add to the generated script."),
+        choices=menu_choices,
+        width=70,
+    )
+    return selected_clients
+
 
 def load_client_spec_yamls():
     client_choices_menu = []
@@ -60,20 +74,18 @@ def main():
     d = Dialog(dialog="dialog")
     main_args = []  # Args that will go into generated scripts' main()
                     # signature
-
-    client_choices_menu = load_client_spec_yamls()
-    status, selected_clients = d.checklist(
-        ("Select API Clients to add to the generated script."),
-        choices=client_choices_menu,
-        width=70,
-    )
-
-    # These will generate the options in click script.
+    # These will generate the options in click script, based on the options
+    # defined for the client specifications we choose in the beginning menu.
     client_args_list = []
 
+    # Load available CLient specifications
+    client_choices_menu = load_client_spec_yamls()
+
+    # Get list of client spec 'short_name' values using Dialog menu
+    status, selected_clients = client_select_menu(d, client_choices_menu)
     if status != 'ok':
-        print("\nAborted\n")
-        sys.exit(0)
+        print("\nAborted on client selection!\n")
+        sys.exit(1)
 
     instance_templates = []
     for client in selected_clients:
@@ -90,20 +102,21 @@ def main():
         init=get_random_prefix()
     )
 
+    # Display optional selection for "switch flags" that are commonly useful
     status, chosen_switches = switch_flags_menu(d)
 
     if status != 'ok':
-        print("\nAborted\n")
-        sys.exit(0)
+        print("\nAborted on Switch Flags selection\n")
+        sys.exit(1)
 
     switch_flags = [SWITCH_FLAGS[switch] for switch in chosen_switches]
     main_args.extend(chosen_switches)
-    switches_template = Template(
+    script_template = Template(
         open('templates/click_option_switch_flag.j2', 'r').read().strip(),
     )
 
     main_args_string = ", ".join(main_args)
-    output = switches_template.render(
+    output = script_template.render(
         switch_flags=switch_flags,
         main_args=main_args,
         instance_templates=instance_templates,
@@ -113,6 +126,7 @@ def main():
 
     with open("final_script.py", "w") as output_script:
         output_script.write(output)
+
 
 if __name__ == "__main__":
     main()

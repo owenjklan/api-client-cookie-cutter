@@ -1,18 +1,14 @@
 name: "Nucleus"
 short_name: "nucleus"
 description: "Add Nucleus REST API client options"
-instance_template:
-  format: "{lm_instance_id}.logicmonitor.com"
-  varname: "LM_INSTANCE_HOST"
-  format_var: "lm_instance_id"
 options:
-  - nucleus_project_id:
-      long: "--nucleus-project-id"
-      type: int
-      envvar: "_NUCLEUS_PROJECT"
-      help: "Specify the LogicMonitor instance to operate with."
-  - nucleus_api_key:
-      long: "--nucleus-api-key"
-      type: str
-      envvar: "_NUCLEUS_API_KEY"
-      help: "Specify API Key to use with Nucleus REST APIs."
+  - varname: "nucleus_project_id"
+    long: "--nucleus-project-id"
+    type: int
+    envvar: "_NUCLEUS_PROJECT"
+    help: "Specify the LogicMonitor instance to operate with."
+  - varname: "nucleus_api_key"
+    long: "--nucleus-api-key"
+    type: str
+    envvar: "_NUCLEUS_API_KEY"
+    help: "Specify API Key to use with Nucleus REST APIs."
