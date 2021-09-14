@@ -1,0 +1,27 @@
+name: "Service Now"
+short_name: "service_now"
+description: "Add Service Now REST API client options"
+instance_template:
+  format: "{snow_instance}.service-now.com"
+  varname: "SNOW_INSTANCE_HOST"
+  format_var: "snow_instance"
+  comment: "Service Now hostname template"
+options:
+  - varname: "snow_instance"
+    long: "--service-now-instance"
+    type: str
+    envvar: "_SNOW_INSTANCE"
+    metavar: "HOST"
+    help: "Specify the Service Now instance identifier."
+  - varname: "snow_api_user"
+    long: "--service-now-user"
+    type: str
+    envvar: "_SNOW_API_USER"
+    metavar: "API_USER"
+    help: "Specify the API username to use with Service Now REST APIs."
+  - varname: "snow_api_key"
+    long: "--service-now-key"
+    type: str
+    envvar: "_SNOW_API_KEY"
+    metavar: "API_KEY"
+    help: "Specify the API key to use with Service Now REST APIs."

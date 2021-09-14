@@ -2,8 +2,10 @@
 import click
 
 
-{% for instance_template in instance_templates %}# {{instance_template.comment}}
-{{instance_template.varname}} = "{{instance_template.format}}"{% endfor %}
+{% for instance_template in instance_templates %}
+# {{instance_template.comment}}
+{{instance_template.varname}} = "{{instance_template.format}}"
+{% endfor %}
 
 
 @click.command(){% for client_arg in client_args_list %}
@@ -13,8 +15,7 @@ import click
               {% if client_arg.default is not none %}
               default="{{client_arg.default}}", show_default=True,
               {% endif %}
-              help="{{client_arg.help}}"){% endfor %}
-{% for switch in switch_flags %}
+              help="{{client_arg.help}}"){% endfor %}{% for switch in switch_flags %}
 @click.option("{{ switch.long }}", "{{ switch.var_name }}",
               type=bool, is_flag=True,
               default=False, show_default=False,
@@ -27,7 +28,8 @@ def main({{ ", ".join(main_args) }}):
 
     Auto-generated Click Cookie-Cutter Script
     """
-    {% for instance_template in instance_templates %}{{ instance_template.varname | lower }} = {{ instance_template.varname}}.format({{instance_template.format_var}}={{instance_template.format_var}}){% endfor %}
+    {% for instance_template in instance_templates %}
+    {{ instance_template.varname | lower }} = {{ instance_template.varname}}.format({{instance_template.format_var}}={{instance_template.format_var}}){% endfor %}
 
     print("Hello there")
 
