@@ -25,3 +25,7 @@ options:
     envvar: "_LM_ACCESS_KEY"
     metavar: "ACCESS_KEY"
     help: "Specify Access Key for associated AccessID."
+imports:
+  - description: "REST API v2"
+    import_name: "logicmonitor_sdk"
+    install_name: "logicmonitor-sdk"

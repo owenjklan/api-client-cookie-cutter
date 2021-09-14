@@ -20,3 +20,7 @@ options:
     envvar: "_MONGO_PORT"
     metavar: "PORT"
     help: "Specify port to connect to MongoDB on."
+imports:
+  - description: "PyMongo Client library"
+    import_name: "pymongo"
+    install_name: "pymongo"
