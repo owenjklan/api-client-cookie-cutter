@@ -12,9 +12,9 @@ import click
 @click.option("{{client_arg.long}}", "{{client_arg.varname}}",
               envvar="{{prefix}}{{client_arg.envvar}}",
               type={{client_arg.type}}, metavar="{{client_arg.metavar}}",
-              {% if client_arg.default is not none %}
+              {% if client_arg.default is not none -%}
               default="{{client_arg.default}}", show_default=True,
-              {% endif %}
+              {% endif -%}
               help="{{client_arg.help}}"){% endfor %}{% for switch in switch_flags %}
 @click.option("{{ switch.long }}", "{{ switch.var_name }}",
               type=bool, is_flag=True,
