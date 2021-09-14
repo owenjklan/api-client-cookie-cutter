@@ -1,0 +1,22 @@
+name: "Tines"
+short_name: "tines"
+description: "Add Tines REST API client options"
+options:
+  - varname: "tines_host"
+    long: "--tines-host"
+    type: str
+    envvar: "_TINES_HOST"
+    metavar: "HOST"
+    help: "Specify the Tines host to connect to."
+  - varname: "tines_username"
+    long: "--tines-username"
+    type: str
+    envvar: "_TINES_USERNAME"
+    metavar: "USERNAME"
+    help: "Specify Username to authenticate with."
+  - varname: "tines_api_token"
+    long: "--tines-api-token"
+    type: str
+    envvar: "_TINES_API_TOKEN"
+    metavar: "API_TOKEN"
+    help: "Specify API Token to authenticate with."
