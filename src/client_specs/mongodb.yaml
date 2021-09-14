@@ -1,0 +1,22 @@
+name: "MongoDB"
+short_name: "mongo_db"
+description: "Add MongoDB client options"
+options:
+  - varname: "mongo_db_host"
+    long: "--mongo-host"
+    type: str
+    envvar: "_MONGO_HOST"
+    metavar: "MONGO_HOST"
+    help: "Specify the Hostname for the target MongoDB Host instance."
+  - varname: "mongo_db_database"
+    long: "--mongo-database"
+    type: str
+    envvar: "_MONGO_DATABASE"
+    metavar: "DATABASE"
+    help: "Specify Mongo Database to use."
+  - varname: "mongo_db_port"
+    long: "--mongo-port"
+    type: int
+    envvar: "_MONGO_PORT"
+    metavar: "PORT"
+    help: "Specify port to connect to MongoDB on."
