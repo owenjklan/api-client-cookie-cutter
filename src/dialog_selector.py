@@ -112,7 +112,7 @@ def main():
     switch_flags = [SWITCH_FLAGS[switch] for switch in chosen_switches]
     main_args.extend(chosen_switches)
     script_template = Template(
-        open('templates/click_option_switch_flag.j2', 'r').read().strip(),
+        open('templates/base_script.j2', 'r').read().strip(),
     )
 
     main_args_string = ", ".join(main_args)

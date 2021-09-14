@@ -11,14 +11,15 @@ import click
               envvar="{{prefix}}{{client_arg.envvar}}",
               type={{client_arg.type}},
               help="{{client_arg.help}}"){% endfor %}
-{% for switch in switch_flags %}@click.option("{{ switch.long }}", "{{ switch.var_name }}",
+{% for switch in switch_flags %}
+@click.option("{{ switch.long }}", "{{ switch.var_name }}",
               type=bool, is_flag=True,
               default=False, show_default=False,
               help=("{{switch.help}}")){% endfor %}
 def main({{ ", ".join(main_args) }}):
     """
     {{app_title}}
-    {{'-' * len(app_title)}}
+    {{'-' * (app_title | length)}}
 
     Auto-generated Click Cookie-Cutter Script
     """
