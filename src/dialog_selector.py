@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import base64
+import textwrap
 import time
 
 import yaml
@@ -97,6 +98,13 @@ def get_default_for_option(d, opt):
         return None, None
 
 
+def wrap_main_args(main_args_list):
+    ma = ", ".join(main_args_list)
+    wrapped = textwrap.wrap(ma, subsequent_indent="         ", width=70,
+                            break_on_hyphens=False, break_long_words=False)
+    return "\n".join(wrapped)
+
+
 def main():
     d = Dialog(dialog="dialog")
     main_args = []  # Args that will go into generated scripts' main()
@@ -148,10 +156,12 @@ def main():
         open('templates/base_script.j2', 'r').read().strip(),
     )
 
-    main_args_string = ", ".join(main_args)
+    wrapped_main_args = wrap_main_args(main_args)
+
     output = script_template.render(
         switch_flags=switch_flags,
         main_args=main_args,
+        wrapped_main_args=wrapped_main_args,
         instance_templates=instance_templates,
         prefix=entered_prefix,
         client_args_list=client_args_list,

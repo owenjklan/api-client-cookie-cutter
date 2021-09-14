@@ -20,7 +20,7 @@ import click
               type=bool, is_flag=True,
               default=False, show_default=False,
               help=("{{switch.help}}")){% endfor %}
-def main({{ ", ".join(main_args) }}):
+def main({{wrapped_main_args}}):
     """
     \b
     {{app_title}}
