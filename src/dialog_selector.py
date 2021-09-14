@@ -92,7 +92,9 @@ def get_default_for_option(d, opt):
             width=40,
             backtitle="Click Cookie-Cutter",
         )
-        print(f"{opt['varname']}: {default_value}")
+        return default_value, True  # Force  show_default=True
+    else:
+        return None, None
 
 
 def main():
@@ -123,7 +125,9 @@ def main():
 
         # While we have an options list, ask for defaults for each option
         for opt in current_client['options']:
-            get_default_for_option(d, opt)
+            default, show_default = get_default_for_option(d, opt)
+            opt['default'] = default
+
 
     # Get prefix for all environment variables
     status, entered_prefix = d.inputbox(
