@@ -107,6 +107,11 @@ def wrap_main_args(main_args_list):
 
 def main():
     d = Dialog(dialog="dialog")
+
+    script_name = d.inputbox("Name of script")
+
+    envvar_file = {}
+
     main_args = []  # Args that will go into generated scripts' main()
                     # signature
     # These will generate the options in click script, based on the options
@@ -165,10 +170,10 @@ def main():
         instance_templates=instance_templates,
         prefix=entered_prefix,
         client_args_list=client_args_list,
-        app_title="testapp"
+        app_title=script_name,
     )
 
-    with open("final_script.py", "w") as output_script:
+    with open("output/final_script.py", "w") as output_script:
         output_script.write(output)
 
 
