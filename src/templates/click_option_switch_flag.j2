@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+
+import click
+
+
+{% for instance_template in instance_templates %}# {{instance_template.comment}}
+{{instance_template.varname}} = "{{instance_template.format}}"{% endfor %}
+
+
+@click.command()
+{% for client_arg in client_args_list %}
+@click.option("{{client_arg.long}}", "{{client_arg.varname}}",
+              envvar="{{prefix}}{{client_arg.envvar}}",
+              type={{client_arg.type}},
+              help="{{client_arg.help}}"){% endfor %}
+{% for switch in switch_flags %}@click.option("{{ switch.long }}", "{{ switch.var_name }}",
+              type=bool, is_flag=True,
+              default=False, show_default=False,
+              help=("{{switch.help}}")){% endfor %}
+def main({{ ", ".join(main_args) }}):
+    {% for instance_template in instance_templates %}{{ instance_template.varname | lower }} = {{ instance_template.varname}}.format({{instance_template.format_var}}={{instance_template.format_var}}){% endfor %}
+
+    print("Hello there")
+
+
+if __name__ == "__main__":
+    main()

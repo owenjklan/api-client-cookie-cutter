@@ -1,0 +1,24 @@
+name: "LogicMonitor"
+short_name: "logicmonitor"
+description: "Add LogicMonitor REST API client options"
+instance_template:
+  format: "{lm_instance_id}.logicmonitor.com"
+  varname: "LM_INSTANCE_HOST"
+  format_var: "lm_instance_id"
+  comment: "LogicMonitor hostname template"
+options:
+  - varname: "lm_instance_id"
+    long: "--lm-instance-id"
+    type: str
+    envvar: "_LM_INSTANCE"
+    help: "Specify the LogicMonitor instance to operate with."
+  - varname: "lm_access_id"
+    long: "--lm-access-id"
+    type: str
+    envvar: "_LM_ACCESS_ID"
+    help: "Specify AccessID to use with LogicMonitor REST APIs."
+  - varname: "lm_access_key"
+    long: "--lm-access-key"
+    type: str
+    envvar: "_LM_ACCESS_KEY"
+    help: "Specify Access Key for associated AccessID."
