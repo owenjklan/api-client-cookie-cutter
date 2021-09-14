@@ -9,7 +9,7 @@ import click
 @click.command(){% for client_arg in client_args_list %}
 @click.option("{{client_arg.long}}", "{{client_arg.varname}}",
               envvar="{{prefix}}{{client_arg.envvar}}",
-              type={{client_arg.type}},
+              type={{client_arg.type}}, metavar="{{client_arg.metavar}}",
               help="{{client_arg.help}}"){% endfor %}
 {% for switch in switch_flags %}
 @click.option("{{ switch.long }}", "{{ switch.var_name }}",

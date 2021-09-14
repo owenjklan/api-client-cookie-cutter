@@ -6,9 +6,11 @@ options:
     long: "--nucleus-project-id"
     type: int
     envvar: "_NUCLEUS_PROJECT"
+    metavar: "PROJECT_ID"
     help: "Specify the LogicMonitor instance to operate with."
   - varname: "nucleus_api_key"
     long: "--nucleus-api-key"
     type: str
     envvar: "_NUCLEUS_API_KEY"
+    metavar: "API_KEY"
     help: "Specify API Key to use with Nucleus REST APIs."

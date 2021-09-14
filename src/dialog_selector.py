@@ -96,6 +96,10 @@ def main():
         main_args.extend(option_varnames)
         client_args_list.extend(current_client['options'])
 
+        # While we have an options list, ask for defaults for each option
+        for opt in current_client['options']:
+            
+
     # Get prefix for all environment variables
     status, entered_prefix = d.inputbox(
         "Environment variables prefix",

@@ -8,24 +8,24 @@ LM_INSTANCE_HOST = "{lm_instance_id}.logicmonitor.com"
 
 @click.command()
 @click.option("--lm-instance-id", "lm_instance_id",
-              envvar="wyJ_LM_INSTANCE",
-              type=str,
-              help="Specify the LogicMonitor instance to operate with.")
+              envvar="eJ_LM_INSTANCE",
+              type=str, metavar="INSTANCE",
+              help="Specify the LogicMonitor instance to operate with. Eg: 'equate'")
 @click.option("--lm-access-id", "lm_access_id",
-              envvar="wyJ_LM_ACCESS_ID",
-              type=str,
+              envvar="eJ_LM_ACCESS_ID",
+              type=str, metavar="ACCESS_ID",
               help="Specify AccessID to use with LogicMonitor REST APIs.")
 @click.option("--lm-access-key", "lm_access_key",
-              envvar="wyJ_LM_ACCESS_KEY",
-              type=str,
+              envvar="eJ_LM_ACCESS_KEY",
+              type=str, metavar="ACCESS_KEY",
               help="Specify Access Key for associated AccessID.")
 @click.option("--nucleus-project-id", "nucleus_project_id",
-              envvar="wyJ_NUCLEUS_PROJECT",
-              type=int,
+              envvar="eJ_NUCLEUS_PROJECT",
+              type=int, metavar="PROJECT_ID",
               help="Specify the LogicMonitor instance to operate with.")
 @click.option("--nucleus-api-key", "nucleus_api_key",
-              envvar="wyJ_NUCLEUS_API_KEY",
-              type=str,
+              envvar="eJ_NUCLEUS_API_KEY",
+              type=str, metavar="API_KEY",
               help="Specify API Key to use with Nucleus REST APIs.")
 
 @click.option("--debug", "debug_flag",
