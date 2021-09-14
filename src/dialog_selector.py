@@ -37,7 +37,11 @@ def switch_flags_menu(d):
         ("Select optional 'switch flags' to include. Switch flags essentially"
          " enable a feature if they are present."),
         choices=menu_options,
+        title=" Select common 'switch' flags ",
         width=60,
+        list_height=5,
+        height=12,
+        backtitle="Click Cookie-Cutter",
     )
     return selected_switches
 
@@ -46,7 +50,9 @@ def client_select_menu(d, menu_choices):
     selected_clients = d.checklist(
         ("Select API Clients to add to the generated script."),
         choices=menu_choices,
+        title=" Select included clients ",
         width=70,
+        backtitle="Click Cookie-Cutter",
     )
     return selected_clients
 
@@ -68,6 +74,25 @@ def load_client_spec_yamls():
         )
 
     return client_choices_menu
+
+
+def get_default_for_option(d, opt):
+    use_default = d.yesno(
+        f"Would you like to provide a default for:\n{opt['varname']} (type: {opt['type']})",
+        title=" Specify Default? ",
+        width="60",
+        height=7,
+        backtitle="Click Cookie-Cutter",
+    )
+    if use_default == d.OK:
+        status, default_value = d.inputbox(
+            f"Default for: {opt['varname']}",
+            title="Enter Default value",
+            height=7,
+            width=40,
+            backtitle="Click Cookie-Cutter",
+        )
+        print(f"{opt['varname']}: {default_value}")
 
 
 def main():
@@ -98,7 +123,7 @@ def main():
 
         # While we have an options list, ask for defaults for each option
         for opt in current_client['options']:
-            
+            get_default_for_option(d, opt)
 
     # Get prefix for all environment variables
     status, entered_prefix = d.inputbox(
@@ -126,6 +151,7 @@ def main():
         instance_templates=instance_templates,
         prefix=entered_prefix,
         client_args_list=client_args_list,
+        app_title="testapp"
     )
 
     with open("final_script.py", "w") as output_script:

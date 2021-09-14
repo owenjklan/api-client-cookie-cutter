@@ -18,6 +18,7 @@ import click
               help=("{{switch.help}}")){% endfor %}
 def main({{ ", ".join(main_args) }}):
     """
+    \b
     {{app_title}}
     {{'-' * (app_title | length)}}
 
