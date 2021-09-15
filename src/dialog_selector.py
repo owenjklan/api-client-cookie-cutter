@@ -127,6 +127,7 @@ def main():
         print("\nAborted on client selection!\n")
         sys.exit(1)
 
+    imports_list = []
     instance_templates = []
     for client in selected_clients:
         current_client = client_specs[client]  # by shortname
@@ -135,6 +136,10 @@ def main():
         option_varnames = [opt['varname'] for opt in current_client['options']]
         main_args.extend(option_varnames)
         client_args_list.extend(current_client['options'])
+
+        if "imports" in current_client:
+            imports_list.extend(current_client['imports'])
+            print(f"Added imports for {current_client['name']}: {current_client['imports']}")
 
         # While we have an options list, ask for defaults for each option
         for opt in current_client['options']:
@@ -170,6 +175,7 @@ def main():
         instance_templates=instance_templates,
         prefix=entered_prefix,
         client_args_list=client_args_list,
+        imports_list=imports_list,
         app_title=script_name,
     )
 

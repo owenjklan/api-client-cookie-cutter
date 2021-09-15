@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 import click
 
+{% for import_spec in imports_list %}
+import {{import_spec.import_name}}
+{% endfor %}
 
 {% for instance_template in instance_templates %}
 # {{instance_template.comment}}
 {{instance_template.varname}} = "{{instance_template.format}}"
 {% endfor %}
-
 
 @click.command(){% for client_arg in client_args_list %}
 @click.option("{{client_arg.long}}", "{{client_arg.varname}}",
