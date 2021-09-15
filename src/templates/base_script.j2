@@ -3,6 +3,7 @@ import click
 
 {% for import_spec in imports_list %}
 import {{import_spec.import_name}}
+{% if 'from' in import_spec %}from {{import_spec.import_name}} import {% for sub in import_spec.from %}({{sub}}, ){% endfor %}{% endif %}
 {% endfor %}
 
 {% for instance_template in instance_templates %}

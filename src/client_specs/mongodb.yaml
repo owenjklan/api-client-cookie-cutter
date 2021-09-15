@@ -24,3 +24,5 @@ imports:
   - description: "PyMongo Client library"
     import_name: "pymongo"
     install_name: "pymongo"
+    from:
+      - "MongoClient"
