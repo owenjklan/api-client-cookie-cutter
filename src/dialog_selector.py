@@ -108,7 +108,7 @@ def wrap_main_args(main_args_list):
 def main():
     d = Dialog(dialog="dialog")
 
-    script_name = d.inputbox("Name of script")
+    status, script_name = d.inputbox("Name of script")
 
     envvar_file = {}
 
@@ -173,7 +173,7 @@ def main():
         app_title=script_name,
     )
 
-    with open("output/final_script.py", "w") as output_script:
+    with open(f"output/{script_name}", "w") as output_script:
         output_script.write(output)
 
 
