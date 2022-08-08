@@ -146,7 +146,6 @@ def main():
             default, show_default = get_default_for_option(d, opt)
             opt['default'] = default
 
-
     # Get prefix for all environment variables
     status, entered_prefix = d.inputbox(
         "Environment variables prefix",
